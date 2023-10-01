@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnwqj8ucoy2bm"]
+
+[ext_resource type="Texture2D" uid="uid://7jve84xgbacw" path="res://Sprites/ENDING.png" id="1_htfyw"]
+[ext_resource type="Script" path="res://Scripts/Ending.gd" id="2_is21a"]
+
+[node name="Node2D" type="Node2D"]
+texture_filter = 1
+texture_repeat = 2
+metadata/_edit_horizontal_guides_ = []
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 400.0
+offset_top = 395.0
+offset_right = 1104.0
+offset_bottom = 793.0
+color = Color(0, 0, 0, 1)
+
+[node name="Ending" type="Sprite2D" parent="."]
+position = Vector2(760, 598)
+texture = ExtResource("1_htfyw")
+script = ExtResource("2_is21a")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(760, 598)

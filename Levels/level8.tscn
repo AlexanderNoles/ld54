@@ -1,0 +1,90 @@
+[gd_scene load_steps=10 format=3 uid="uid://bhacwxktbyyme"]
+
+[ext_resource type="PackedScene" uid="uid://dl0rtlqk74cbt" path="res://Parts/grid.tscn" id="1_2ntk3"]
+[ext_resource type="Texture2D" uid="uid://d1shdjvjn3vfr" path="res://Sprites/newHeart.png" id="3_lqp2q"]
+[ext_resource type="Script" path="res://Scripts/NewHeart.gd" id="4_c5tcr"]
+[ext_resource type="PackedScene" uid="uid://d2xk3u8gf7ddb" path="res://Parts/base_scene.tscn" id="5_mvktq"]
+
+[sub_resource type="Curve" id="Curve_70iia"]
+max_value = 200.0
+_data = [Vector2(0, 200), 0.0, 0.0, 0, 0, Vector2(0.922619, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_lsib7"]
+curve = SubResource("Curve_70iia")
+
+[sub_resource type="Gradient" id="Gradient_5rvbu"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_30j6b"]
+gradient = SubResource("Gradient_5rvbu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u35wk"]
+lifetime_randomness = 0.09
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 53.77
+initial_velocity_max = 53.77
+angular_velocity_min = -720.0
+angular_velocity_max = 720.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+radial_accel_max = 100.0
+angle_min = -720.0
+angle_max = 720.0
+color_ramp = SubResource("GradientTexture1D_30j6b")
+anim_speed_min = 1.72
+anim_speed_max = 6.54
+anim_speed_curve = SubResource("CurveTexture_lsib7")
+
+[node name="Node2D" type="Node2D"]
+texture_filter = 1
+texture_repeat = 2
+metadata/_edit_horizontal_guides_ = []
+
+[node name="Grid" parent="." node_paths=PackedStringArray("exitDoorway") instance=ExtResource("1_2ntk3")]
+offset_left = -72.0
+offset_top = -72.0
+offset_right = 73.0
+offset_bottom = 71.0
+gridScale = 9
+exitDoorway = NodePath("ExitDoorway")
+
+[node name="ColorRect" parent="Grid" index="0" node_paths=PackedStringArray("target")]
+target = NodePath("..")
+
+[node name="ExitDoorway" parent="Grid" index="1" node_paths=PackedStringArray("child")]
+position = Vector2(397, 265)
+open = false
+child = NodePath("Sprite2D")
+
+[node name="BaseScene" parent="." instance=ExtResource("5_mvktq")]
+
+[node name="ColorRect" parent="BaseScene" index="0"]
+distanceToCenter = 4.0
+
+[node name="Player" parent="BaseScene" index="1"]
+position = Vector2(0, 62)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(1, -4)
+emitting = false
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_u35wk")
+one_shot = true
+explosiveness = 1.0
+
+[node name="NewHeart" type="Sprite2D" parent="." node_paths=PackedStringArray("player", "particles")]
+position = Vector2(1, -4)
+texture = ExtResource("3_lqp2q")
+script = ExtResource("4_c5tcr")
+player = NodePath("../BaseScene/Player")
+particles = NodePath("../GPUParticles2D")
+
+[connection signal="on_player_kill" from="BaseScene/ColorRect" to="Grid" method="_on_color_rect_on_player_kill"]
+[connection signal="on_state_updated" from="BaseScene/ColorRect" to="Grid" method="_win_check"]
+
+[editable path="Grid"]
+[editable path="BaseScene"]

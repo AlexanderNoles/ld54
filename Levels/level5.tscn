@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://dfxpa7bl07a2i"]
+
+[ext_resource type="PackedScene" uid="uid://dl0rtlqk74cbt" path="res://Parts/grid.tscn" id="1_vbvw8"]
+[ext_resource type="Texture2D" uid="uid://bsfslwv8hss51" path="res://Sprites/devil.png" id="2_f3l6a"]
+[ext_resource type="Script" path="res://Scripts/Devil.gd" id="3_jisws"]
+[ext_resource type="PackedScene" uid="uid://d2xk3u8gf7ddb" path="res://Parts/base_scene.tscn" id="4_45p45"]
+
+[node name="Node2D" type="Node2D"]
+texture_filter = 1
+texture_repeat = 2
+metadata/_edit_horizontal_guides_ = []
+
+[node name="Grid" parent="." node_paths=PackedStringArray("exitDoorway") instance=ExtResource("1_vbvw8")]
+exitDoorway = NodePath("ExitDoorway")
+
+[node name="ColorRect" parent="Grid" index="0" node_paths=PackedStringArray("target")]
+target = NodePath("..")
+
+[node name="ExitDoorway" parent="Grid" index="1" node_paths=PackedStringArray("child")]
+position = Vector2(39.985, 40.055)
+child = NodePath("Sprite2D")
+
+[node name="Devil" type="Sprite2D" parent="Grid/Devils" index="0"]
+position = Vector2(24, 22)
+texture = ExtResource("2_f3l6a")
+script = ExtResource("3_jisws")
+positions = [Vector2(40, 22), Vector2(56, 22), Vector2(56, 38), Vector2(56, 54), Vector2(40, 54), Vector2(24, 54), Vector2(8, 54)]
+
+[node name="Devil2" type="Sprite2D" parent="Grid/Devils" index="1"]
+position = Vector2(24, 38)
+texture = ExtResource("2_f3l6a")
+script = ExtResource("3_jisws")
+positions = [Vector2(24, 22), Vector2(40, 22), Vector2(56, 22), Vector2(56, 38), Vector2(56, 54), Vector2(40, 54), Vector2(24, 54), Vector2(8, 54)]
+
+[node name="BaseScene" parent="." instance=ExtResource("4_45p45")]
+
+[node name="ColorRect" parent="BaseScene" index="0"]
+distanceToCenter = 6.0
+
+[node name="Player" parent="BaseScene" index="1"]
+position = Vector2(32.955, -33.25)
+
+[connection signal="on_player_kill" from="BaseScene/ColorRect" to="Grid" method="_on_color_rect_on_player_kill"]
+[connection signal="on_state_updated" from="BaseScene/ColorRect" to="Grid" method="_win_check"]
+
+[editable path="Grid"]
+[editable path="BaseScene"]

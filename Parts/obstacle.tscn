@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://drp3rtsosqt8m"]
+
+[ext_resource type="Texture2D" uid="uid://cc4wlohqd5yt8" path="res://Sprites/obstacles.png" id="1_w0k2s"]
+
+[node name="Obstacle" type="Sprite2D"]
+z_index = 1
+position = Vector2(56, 40)
+texture = ExtResource("1_w0k2s")

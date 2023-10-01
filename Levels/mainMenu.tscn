@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://7tkj8nyjmrvk"]
+
+[ext_resource type="Script" path="res://Scripts/Camera.gd" id="1_dsp34"]
+[ext_resource type="Shader" path="res://Shaders/wall_part.gdshader" id="2_rhrc7"]
+[ext_resource type="Texture2D" uid="uid://c2dj7y5f7qi3l" path="res://Sprites/walls_world.png" id="3_bmaso"]
+[ext_resource type="Texture2D" uid="uid://hblcepjgr62b" path="res://Sprites/TITLE.png" id="4_cdkd6"]
+[ext_resource type="Texture2D" uid="uid://djlccv276hy2c" path="res://Sprites/START-TIP.png" id="5_stfrc"]
+[ext_resource type="Script" path="res://Scripts/StartMenu.gd" id="6_n1rqv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ajl60"]
+shader = ExtResource("2_rhrc7")
+shader_parameter/multipler = 250.0
+shader_parameter/tex = ExtResource("3_bmaso")
+
+[node name="mainMenu" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("1_dsp34")
+
+[node name="Flesh" type="TextureRect" parent="."]
+z_index = -1000
+material = SubResource("ShaderMaterial_ajl60")
+offset_left = -539.0
+offset_top = -539.0
+offset_right = 539.0
+offset_bottom = 539.0
+mouse_filter = 2
+texture = ExtResource("3_bmaso")
+stretch_mode = 1
+
+[node name="Title" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(1, -67)
+texture = ExtResource("4_cdkd6")
+
+[node name="Start-tip" type="Sprite2D" parent="." node_paths=PackedStringArray("confirmEffect")]
+texture_filter = 1
+position = Vector2(0, 41)
+texture = ExtResource("5_stfrc")
+script = ExtResource("6_n1rqv")
+confirmEffect = NodePath("ColorRect")
+
+[node name="ColorRect" type="ColorRect" parent="Start-tip"]
+offset_left = -49.0
+offset_top = -7.0
+offset_right = -49.0
+offset_bottom = 6.0

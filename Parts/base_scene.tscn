@@ -1,0 +1,187 @@
+[gd_scene load_steps=45 format=3 uid="uid://d2xk3u8gf7ddb"]
+
+[ext_resource type="Shader" path="res://Shaders/dangerZone.gdshader" id="1_tfq64"]
+[ext_resource type="Script" path="res://Scripts/Border.gd" id="2_qaj3l"]
+[ext_resource type="Shader" path="res://Shaders/player.gdshader" id="3_12i7y"]
+[ext_resource type="Texture2D" uid="uid://docysyv3qewie" path="res://Sprites/Player/player1.png" id="4_62cdv"]
+[ext_resource type="Texture2D" uid="uid://cmg2o1nj762ld" path="res://Sprites/Player/player2.png" id="5_3htvo"]
+[ext_resource type="Texture2D" uid="uid://cnspdk6ojxvru" path="res://Sprites/Player/player3.png" id="6_kb2kw"]
+[ext_resource type="Texture2D" uid="uid://curv87n68wi2q" path="res://Sprites/Player/player4.png" id="7_ucpso"]
+[ext_resource type="Texture2D" uid="uid://bk1ieui3gso2n" path="res://Sprites/Player/player5.png" id="8_dmc81"]
+[ext_resource type="Texture2D" uid="uid://bfjxanjqingyq" path="res://Sprites/Player/player6.png" id="9_uogl8"]
+[ext_resource type="Texture2D" uid="uid://bci1lvxc141ck" path="res://Sprites/Player/player7.png" id="10_0cwvw"]
+[ext_resource type="Texture2D" uid="uid://j3o5a1m2dh07" path="res://Sprites/Player/player8.png" id="11_wgvds"]
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="12_5a3ym"]
+[ext_resource type="Texture2D" uid="uid://cvbyi72dtay4q" path="res://Sprites/positionIndicator.png" id="13_dokjs"]
+[ext_resource type="Shader" path="res://Shaders/background.gdshader" id="14_4r187"]
+[ext_resource type="Texture2D" uid="uid://dwguhqjp1t0q4" path="res://Sprites/background.png" id="15_yhmlm"]
+[ext_resource type="Shader" path="res://Shaders/border.gdshader" id="16_jk1po"]
+[ext_resource type="Texture2D" uid="uid://devh4d6rh6v0r" path="res://Sprites/border.png" id="17_67sgd"]
+[ext_resource type="Script" path="res://Scripts/MatchControl.gd" id="18_omn6u"]
+[ext_resource type="Shader" path="res://Shaders/wall_part.gdshader" id="19_3vh0r"]
+[ext_resource type="Texture2D" uid="uid://c2dj7y5f7qi3l" path="res://Sprites/walls_world.png" id="20_35rha"]
+[ext_resource type="Texture2D" uid="uid://dvutrja7js80r" path="res://Sprites/Number/numbers1.png" id="21_bslt2"]
+[ext_resource type="Script" path="res://Scripts/Camera.gd" id="21_parna"]
+[ext_resource type="Script" path="res://Scripts/MoveCounter.gd" id="22_crtr4"]
+[ext_resource type="Texture2D" uid="uid://cl44mk3xqnf4q" path="res://Sprites/Number/numbers2.png" id="23_uy45v"]
+[ext_resource type="Texture2D" uid="uid://dlauc8hib0fuq" path="res://Sprites/Number/numbers3.png" id="24_wwped"]
+[ext_resource type="Texture2D" uid="uid://d2ej4tn2beui8" path="res://Sprites/Number/numbers4.png" id="25_a0tlv"]
+[ext_resource type="Texture2D" uid="uid://cuik0dt6woxkl" path="res://Sprites/Number/numbers5.png" id="26_4iwlk"]
+[ext_resource type="Texture2D" uid="uid://bq1tcjv3s11j2" path="res://Sprites/Number/numbers6.png" id="27_s8mep"]
+[ext_resource type="Texture2D" uid="uid://dsm3f4sidou13" path="res://Sprites/Number/numbers7.png" id="28_jedt0"]
+[ext_resource type="Texture2D" uid="uid://b510eo1hpcc6y" path="res://Sprites/Number/numbers8.png" id="29_6tje0"]
+[ext_resource type="Texture2D" uid="uid://bdp7dkh3h47p3" path="res://Sprites/Number/numbers9.png" id="30_lm5s4"]
+[ext_resource type="Texture2D" uid="uid://tx4jpsgvjry2" path="res://Sprites/Number/numbers10.png" id="31_7dhn8"]
+[ext_resource type="Texture2D" uid="uid://ykx4t3abdc83" path="res://Sprites/Number/numbers11.png" id="32_3f4q1"]
+[ext_resource type="Texture2D" uid="uid://duic88u1twx7d" path="res://Sprites/Number/numbers12.png" id="33_v2hw7"]
+[ext_resource type="Texture2D" uid="uid://cwm8g808i31jc" path="res://Sprites/Number/numbers13.png" id="34_rxisw"]
+[ext_resource type="Texture2D" uid="uid://b5n0d3rwypypl" path="res://Sprites/Number/numbers14.png" id="36_iu1cs"]
+[ext_resource type="Texture2D" uid="uid://bg5k4i4d2iarr" path="res://Sprites/Number/numbers15.png" id="37_gi8av"]
+[ext_resource type="Texture2D" uid="uid://cnj57i7hf2wdl" path="res://Sprites/Number/numbers16.png" id="38_vp1ff"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lbrk7"]
+shader = ExtResource("1_tfq64")
+shader_parameter/_distance = 4.95
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tjlym"]
+shader = ExtResource("3_12i7y")
+shader_parameter/intensity = 0.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4x3ft"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_62cdv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_62cdv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_3htvo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_kb2kw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ucpso")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_dmc81")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_uogl8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_0cwvw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_wgvds")
+}],
+"loop": false,
+"name": &"leave",
+"speed": 12.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r7g6b"]
+shader = ExtResource("14_4r187")
+shader_parameter/Direction = Vector2(1, 1)
+shader_parameter/tex = ExtResource("15_yhmlm")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_th8hn"]
+shader = ExtResource("16_jk1po")
+shader_parameter/tex = ExtResource("17_67sgd")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iffjl"]
+shader = ExtResource("19_3vh0r")
+shader_parameter/multipler = 250.0
+shader_parameter/tex = ExtResource("20_35rha")
+
+[node name="BaseScene" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_lbrk7")
+offset_left = -163.0
+offset_top = -163.0
+offset_right = 163.0
+offset_bottom = 163.0
+mouse_filter = 2
+script = ExtResource("2_qaj3l")
+distanceToCenter = 5.0
+
+[node name="Player" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("positionIndicator")]
+z_index = 100
+material = SubResource("ShaderMaterial_tjlym")
+position = Vector2(16.505, -16.065)
+sprite_frames = SubResource("SpriteFrames_4x3ft")
+animation = &"leave"
+script = ExtResource("12_5a3ym")
+positionIndicator = NodePath("../Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -5
+position = Vector2(8, -8)
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("13_dokjs")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -200
+material = SubResource("ShaderMaterial_r7g6b")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -163.0
+offset_top = -163.0
+offset_right = 163.0
+offset_bottom = 163.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("15_yhmlm")
+stretch_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect" node_paths=PackedStringArray("target")]
+z_index = -1
+material = SubResource("ShaderMaterial_th8hn")
+layout_mode = 0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = -1.0
+offset_bottom = -1.0
+mouse_filter = 2
+texture = ExtResource("17_67sgd")
+expand_mode = 1
+script = ExtResource("18_omn6u")
+target = NodePath("..")
+matchX = true
+matchY = true
+buffer = Vector2(2, 2)
+
+[node name="Flesh" type="TextureRect" parent="."]
+z_index = -1000
+material = SubResource("ShaderMaterial_iffjl")
+offset_left = -539.0
+offset_top = -539.0
+offset_right = 539.0
+offset_bottom = 539.0
+mouse_filter = 2
+texture = ExtResource("20_35rha")
+stretch_mode = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("21_parna")
+
+[node name="MoveCounter" type="Sprite2D" parent="."]
+position = Vector2(143.2, 141.825)
+texture = ExtResource("21_bslt2")
+script = ExtResource("22_crtr4")
+numbers = [ExtResource("21_bslt2"), ExtResource("23_uy45v"), ExtResource("24_wwped"), ExtResource("25_a0tlv"), ExtResource("26_4iwlk"), ExtResource("27_s8mep"), ExtResource("28_jedt0"), ExtResource("29_6tje0"), ExtResource("30_lm5s4"), ExtResource("31_7dhn8"), ExtResource("32_3f4q1"), ExtResource("33_v2hw7"), ExtResource("34_rxisw"), ExtResource("36_iu1cs"), ExtResource("37_gi8av"), ExtResource("38_vp1ff")]
+
+[connection signal="on_move" from="Player" to="ColorRect" method="_on_player_on_move"]
+[connection signal="on_move" from="Player" to="MoveCounter" method="_on_player_on_move"]

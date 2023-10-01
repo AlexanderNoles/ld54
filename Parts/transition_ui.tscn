@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://covu56fybojo"]
+
+[ext_resource type="Script" path="res://Scripts/TransitionUI.gd" id="3_mpbfi"]
+
+[node name="TransitionUI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 4096
+z_as_relative = false
+layout_mode = 0
+offset_left = -320.0
+offset_top = -170.0
+offset_right = 320.0
+offset_bottom = 210.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("3_mpbfi")

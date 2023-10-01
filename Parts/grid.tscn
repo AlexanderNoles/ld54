@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://dl0rtlqk74cbt"]
+
+[ext_resource type="Texture2D" uid="uid://dmlk76a11ql4k" path="res://Sprites/gridTile.png" id="1_y76t6"]
+[ext_resource type="Script" path="res://Scripts/Grid.gd" id="2_yltij"]
+[ext_resource type="Script" path="res://Scripts/MatchControl.gd" id="3_libqd"]
+[ext_resource type="Texture2D" uid="uid://dn0xumpkhw576" path="res://Sprites/exitDoorway.png" id="4_eh3le"]
+[ext_resource type="Script" path="res://Scripts/ExitDoorway.gd" id="5_jm0qe"]
+[ext_resource type="Texture2D" uid="uid://b3aihn4pmsj8d" path="res://Sprites/lockedExit.png" id="6_omibm"]
+
+[node name="Grid" type="TextureRect" node_paths=PackedStringArray("obstaclesEmpty", "devilsEmpty")]
+z_index = -100
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 41.0
+offset_bottom = 39.0
+mouse_filter = 2
+texture = ExtResource("1_y76t6")
+expand_mode = 1
+stretch_mode = 1
+script = ExtResource("2_yltij")
+gridScale = 5
+obstaclesEmpty = NodePath("Obstacles")
+devilsEmpty = NodePath("Devils")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+layout_mode = 0
+offset_left = 28.0
+offset_top = 22.0
+offset_right = 28.0
+offset_bottom = 22.0
+mouse_filter = 2
+color = Color(0.4, 0.4, 0.4, 1)
+script = ExtResource("3_libqd")
+matchX = true
+matchY = true
+buffer = Vector2(0, 1)
+
+[node name="ExitDoorway" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(24, 72)
+texture = ExtResource("4_eh3le")
+script = ExtResource("5_jm0qe")
+open = true
+
+[node name="Sprite2D" type="Sprite2D" parent="ExitDoorway"]
+visible = false
+texture = ExtResource("6_omibm")
+
+[node name="Obstacles" type="Node2D" parent="."]
+
+[node name="Devils" type="Node2D" parent="."]

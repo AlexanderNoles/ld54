@@ -1,0 +1,83 @@
+[gd_scene load_steps=6 format=3 uid="uid://c4uhg0thjlhms"]
+
+[ext_resource type="PackedScene" uid="uid://dl0rtlqk74cbt" path="res://Parts/grid.tscn" id="1_6ykyd"]
+[ext_resource type="PackedScene" uid="uid://drp3rtsosqt8m" path="res://Parts/obstacle.tscn" id="2_na3f8"]
+[ext_resource type="PackedScene" uid="uid://tgh5wh232yx5" path="res://Parts/devil.tscn" id="3_1b48i"]
+[ext_resource type="PackedScene" uid="uid://coufkbu22hhmo" path="res://Parts/key.tscn" id="4_neh42"]
+[ext_resource type="PackedScene" uid="uid://d2xk3u8gf7ddb" path="res://Parts/base_scene.tscn" id="5_bd6b0"]
+
+[node name="Node2D" type="Node2D"]
+texture_filter = 1
+texture_repeat = 2
+metadata/_edit_horizontal_guides_ = []
+
+[node name="Grid" parent="." node_paths=PackedStringArray("exitDoorway") instance=ExtResource("1_6ykyd")]
+offset_left = -56.0
+offset_top = -56.0
+offset_right = 57.0
+offset_bottom = 55.0
+gridScale = 7
+exitDoorway = NodePath("ExitDoorway")
+
+[node name="ColorRect" parent="Grid" index="0" node_paths=PackedStringArray("target")]
+target = NodePath("..")
+
+[node name="ExitDoorway" parent="Grid" index="1" node_paths=PackedStringArray("child")]
+position = Vector2(72, 72)
+open = false
+child = NodePath("Sprite2D")
+
+[node name="Obstacle" parent="Grid/Obstacles" index="0" instance=ExtResource("2_na3f8")]
+position = Vector2(56, 8)
+
+[node name="Obstacle2" parent="Grid/Obstacles" index="1" instance=ExtResource("2_na3f8")]
+position = Vector2(40, 8)
+
+[node name="Obstacle3" parent="Grid/Obstacles" index="2" instance=ExtResource("2_na3f8")]
+position = Vector2(56, 56)
+
+[node name="Obstacle4" parent="Grid/Obstacles" index="3" instance=ExtResource("2_na3f8")]
+position = Vector2(72, 56)
+
+[node name="Obstacle5" parent="Grid/Obstacles" index="4" instance=ExtResource("2_na3f8")]
+position = Vector2(88, 72)
+
+[node name="Obstacle6" parent="Grid/Obstacles" index="5" instance=ExtResource("2_na3f8")]
+position = Vector2(24, 88)
+
+[node name="Obstacle7" parent="Grid/Obstacles" index="6" instance=ExtResource("2_na3f8")]
+position = Vector2(24, 104)
+
+[node name="Obstacle8" parent="Grid/Obstacles" index="7" instance=ExtResource("2_na3f8")]
+position = Vector2(72, 88)
+
+[node name="Devil" parent="Grid/Devils" index="0" instance=ExtResource("3_1b48i")]
+position = Vector2(88, 22)
+positions = [Vector2(72, 22), Vector2(56, 22), Vector2(56, 38), Vector2(72, 38), Vector2(88, 38), Vector2(88, 54)]
+
+[node name="Devil2" parent="Grid/Devils" index="1" instance=ExtResource("3_1b48i")]
+position = Vector2(40, 54)
+positions = [Vector2(40, 38), Vector2(24, 38), Vector2(8, 38), Vector2(8, 54), Vector2(24, 54), Vector2(40, 54), Vector2(24, 54), Vector2(8, 54)]
+
+[node name="Devil3" parent="Grid/Devils" index="2" instance=ExtResource("3_1b48i")]
+position = Vector2(104, 38)
+positions = [Vector2(104, 54), Vector2(104, 70), Vector2(104, 86), Vector2(104, 102), Vector2(88, 102), Vector2(72, 102), Vector2(56, 102), Vector2(56, 86), Vector2(56, 70), Vector2(56, 70), Vector2(56, 86), Vector2(56, 102)]
+
+[node name="Key" parent="Grid" instance=ExtResource("4_neh42")]
+position = Vector2(56, 24)
+animation = &"default"
+
+[node name="BaseScene" parent="." instance=ExtResource("5_bd6b0")]
+
+[node name="ColorRect" parent="BaseScene" index="0"]
+distanceToCenter = 15.0
+
+[node name="Player" parent="BaseScene" index="1"]
+position = Vector2(-32, -33)
+
+[connection signal="on_player_kill" from="BaseScene/ColorRect" to="Grid" method="_on_color_rect_on_player_kill"]
+[connection signal="on_state_updated" from="BaseScene/ColorRect" to="Grid" method="_win_check"]
+[connection signal="on_move" from="BaseScene/Player" to="Grid/Key" method="_on_player_on_move"]
+
+[editable path="Grid"]
+[editable path="BaseScene"]

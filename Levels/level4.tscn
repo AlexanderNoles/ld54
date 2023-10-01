@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=3 uid="uid://gffruapcx13c"]
+
+[ext_resource type="PackedScene" uid="uid://dl0rtlqk74cbt" path="res://Parts/grid.tscn" id="1_kpb5q"]
+[ext_resource type="PackedScene" uid="uid://drp3rtsosqt8m" path="res://Parts/obstacle.tscn" id="2_maacp"]
+[ext_resource type="PackedScene" uid="uid://coufkbu22hhmo" path="res://Parts/key.tscn" id="3_hb73j"]
+[ext_resource type="PackedScene" uid="uid://d2xk3u8gf7ddb" path="res://Parts/base_scene.tscn" id="4_mchkr"]
+
+[node name="Node2D" type="Node2D"]
+texture_filter = 1
+texture_repeat = 2
+metadata/_edit_horizontal_guides_ = []
+
+[node name="Grid" parent="." node_paths=PackedStringArray("exitDoorway") instance=ExtResource("1_kpb5q")]
+exitDoorway = NodePath("ExitDoorway")
+
+[node name="ColorRect" parent="Grid" index="0" node_paths=PackedStringArray("target")]
+target = NodePath("..")
+
+[node name="ExitDoorway" parent="Grid" index="1" node_paths=PackedStringArray("child")]
+position = Vector2(39.985, 40.055)
+open = false
+child = NodePath("Sprite2D")
+
+[node name="Obstacle" parent="Grid/Obstacles" index="0" instance=ExtResource("2_maacp")]
+
+[node name="Obstacle2" parent="Grid/Obstacles" index="1" instance=ExtResource("2_maacp")]
+position = Vector2(56, 56)
+
+[node name="Obstacle3" parent="Grid/Obstacles" index="2" instance=ExtResource("2_maacp")]
+position = Vector2(24, 72)
+
+[node name="Obstacle4" parent="Grid/Obstacles" index="3" instance=ExtResource("2_maacp")]
+position = Vector2(8, 8)
+
+[node name="Obstacle5" parent="Grid/Obstacles" index="4" instance=ExtResource("2_maacp")]
+position = Vector2(24, 8)
+
+[node name="Obstacle6" parent="Grid/Obstacles" index="5" instance=ExtResource("2_maacp")]
+position = Vector2(8, 24)
+
+[node name="Key" parent="Grid" instance=ExtResource("3_hb73j")]
+position = Vector2(8.87, 72.02)
+frame_progress = 0.383309
+
+[node name="BaseScene" parent="." instance=ExtResource("4_mchkr")]
+
+[node name="ColorRect" parent="BaseScene" index="0"]
+distanceToCenter = 11.0
+
+[node name="Player" parent="BaseScene" index="1"]
+position = Vector2(32.955, -16.065)
+
+[connection signal="on_player_kill" from="BaseScene/ColorRect" to="Grid" method="_on_color_rect_on_player_kill"]
+[connection signal="on_state_updated" from="BaseScene/ColorRect" to="Grid" method="_win_check"]
+[connection signal="on_move" from="BaseScene/Player" to="Grid/Key" method="_on_player_on_move"]
+
+[editable path="Grid"]
+[editable path="BaseScene"]

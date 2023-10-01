@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://tgh5wh232yx5"]
+
+[ext_resource type="Texture2D" uid="uid://bsfslwv8hss51" path="res://Sprites/devil.png" id="1_dunwe"]
+[ext_resource type="Script" path="res://Scripts/Devil.gd" id="2_qap6n"]
+
+[node name="Devil" type="Sprite2D"]
+position = Vector2(24, 22)
+texture = ExtResource("1_dunwe")
+script = ExtResource("2_qap6n")
+positions = [Vector2(40, 22), Vector2(56, 22), Vector2(56, 38), Vector2(56, 54), Vector2(40, 54), Vector2(24, 54), Vector2(8, 54)]
