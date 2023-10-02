@@ -13,6 +13,8 @@ var flashEndTime : float
 
 signal on_move(grid_position)
 
+@export var moveSound : AudioStreamPlayer2D
+
 func _ready():
 	startingPos = position
 	_reset()
@@ -59,6 +61,8 @@ func _input(event):
 			rawPos = targetGrid.get_position_on_grid(targetGrid.clamp_position_to_grid(rawPos + (finalInputVector * targetGrid.pixelScale)))
 			if previousRawPos != rawPos:
 				emit_signal("on_move", rawPos)
+				moveSound.play()
+				
 
 func _process(delta):
 	positionIndicator.position = rawPos

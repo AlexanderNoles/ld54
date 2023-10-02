@@ -2,7 +2,11 @@ extends Sprite2D
 
 @export var player : Node2D
 @export var particles : Node2D
+
 var gameFinished : bool = false
+
+@export var gameEndSound : AudioStreamPlayer2D
+@export var heartExplodeSound : AudioStreamPlayer2D
 
 func _process(delta):
 	var extra = abs(sin(Time.get_ticks_msec() / 2000.0) * 0.625)
@@ -10,11 +14,13 @@ func _process(delta):
 	
 	if player.global_position.distance_to(global_position) < 3 and !gameFinished:
 		gameFinished = true
+		gameEndSound.play()
 		player.inputDisabled = true
 		player.play("leave")
 		await get_tree().create_timer(0.5).timeout
 		player.visible = false
 		await get_tree().create_timer(1.0).timeout
 		particles.emitting = true
+		heartExplodeSound.play()
 		visible = false
 		GameManager._win_level()

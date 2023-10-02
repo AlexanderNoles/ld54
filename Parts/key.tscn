@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://coufkbu22hhmo"]
+[gd_scene load_steps=16 format=3 uid="uid://coufkbu22hhmo"]
 
 [ext_resource type="Texture2D" uid="uid://sghhmoqq8tor" path="res://Sprites/Key/key1.png" id="1_jf142"]
 [ext_resource type="Script" path="res://Scripts/Key.gd" id="2_1k37v"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cvqcstr6yxa4r" path="res://Sprites/Key/key5.png" id="5_y864m"]
 [ext_resource type="Texture2D" uid="uid://boqfaf4gsfefh" path="res://Sprites/Key/key6.png" id="6_5tvk3"]
 [ext_resource type="Texture2D" uid="uid://yy5g3duacuyn" path="res://Sprites/Key/key7.png" id="7_0mfed"]
+[ext_resource type="AudioStream" uid="uid://c75s32pxh5n20" path="res://Sounds/keyPickup.wav" id="9_0uxbu"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_h6om5"]
 animations = [{
@@ -71,13 +72,14 @@ anim_speed_min = 1.72
 anim_speed_max = 6.54
 anim_speed_curve = SubResource("CurveTexture_5wn7u")
 
-[node name="Key" type="AnimatedSprite2D" node_paths=PackedStringArray("particles")]
+[node name="Key" type="AnimatedSprite2D" node_paths=PackedStringArray("particles", "keyPickupSound")]
 position = Vector2(8.87, 40.13)
 sprite_frames = SubResource("SpriteFrames_h6om5")
 animation = &"keyGrabbed"
 autoplay = "default"
 script = ExtResource("2_1k37v")
 particles = NodePath("GPUParticles2D")
+keyPickupSound = NodePath("KeyPickup")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 emitting = false
@@ -85,3 +87,7 @@ amount = 100
 process_material = SubResource("ParticleProcessMaterial_e46x0")
 one_shot = true
 explosiveness = 1.0
+
+[node name="KeyPickup" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_0uxbu")
+volume_db = -9.541

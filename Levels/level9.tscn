@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cnwqj8ucoy2bm"]
+[gd_scene load_steps=4 format=3 uid="uid://cnwqj8ucoy2bm"]
 
 [ext_resource type="Texture2D" uid="uid://7jve84xgbacw" path="res://Sprites/ENDING.png" id="1_htfyw"]
 [ext_resource type="Script" path="res://Scripts/Ending.gd" id="2_is21a"]
+[ext_resource type="AudioStream" uid="uid://c63ah1q0k4q2s" path="res://Sounds/gameStart.wav" id="3_v0j84"]
 
 [node name="Node2D" type="Node2D"]
 texture_filter = 1
@@ -22,3 +23,7 @@ script = ExtResource("2_is21a")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(760, 598)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_v0j84")
+autoplay = true

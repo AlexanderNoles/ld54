@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dl0rtlqk74cbt"]
+[gd_scene load_steps=10 format=3 uid="uid://dl0rtlqk74cbt"]
 
 [ext_resource type="Texture2D" uid="uid://dmlk76a11ql4k" path="res://Sprites/gridTile.png" id="1_y76t6"]
 [ext_resource type="Script" path="res://Scripts/Grid.gd" id="2_yltij"]
@@ -6,8 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://dn0xumpkhw576" path="res://Sprites/exitDoorway.png" id="4_eh3le"]
 [ext_resource type="Script" path="res://Scripts/ExitDoorway.gd" id="5_jm0qe"]
 [ext_resource type="Texture2D" uid="uid://b3aihn4pmsj8d" path="res://Sprites/lockedExit.png" id="6_omibm"]
+[ext_resource type="AudioStream" uid="uid://cfjfyyowypg87" path="res://Sounds/levelComplete.wav" id="7_lo4yp"]
+[ext_resource type="AudioStream" uid="uid://dxfcx38vdkaxt" path="res://Sounds/reset.wav" id="8_mxkwy"]
+[ext_resource type="AudioStream" uid="uid://b6soigdrvpkks" path="res://Sounds/devilMove2.wav" id="9_pyfoo"]
 
-[node name="Grid" type="TextureRect" node_paths=PackedStringArray("obstaclesEmpty", "devilsEmpty")]
+[node name="Grid" type="TextureRect" node_paths=PackedStringArray("obstaclesEmpty", "devilsEmpty", "winSound", "resetSound", "devilMoveSound")]
 z_index = -100
 offset_left = -40.0
 offset_top = -40.0
@@ -21,6 +24,9 @@ script = ExtResource("2_yltij")
 gridScale = 5
 obstaclesEmpty = NodePath("Obstacles")
 devilsEmpty = NodePath("Devils")
+winSound = NodePath("WinSound")
+resetSound = NodePath("RestSound")
+devilMoveSound = NodePath("devilMoveSound")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -1
@@ -50,3 +56,13 @@ texture = ExtResource("6_omibm")
 [node name="Obstacles" type="Node2D" parent="."]
 
 [node name="Devils" type="Node2D" parent="."]
+
+[node name="WinSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_lo4yp")
+
+[node name="RestSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_mxkwy")
+volume_db = -7.633
+
+[node name="devilMoveSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_pyfoo")

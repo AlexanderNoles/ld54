@@ -19,11 +19,14 @@ func _on_reset():
 	rawPos = position
 	positionIndex = 0
 
-func move():
+func move(moveSound):
+	var previousPos = rawPos
 	rawPos = positions[positionIndex]
 	positionIndex += 1
 	if positionIndex == positions.size():
 		positionIndex -= 1
+	elif previousPos != rawPos:
+		moveSound.play()
 	
 	return rawPos
 

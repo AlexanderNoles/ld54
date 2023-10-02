@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://d2xk3u8gf7ddb"]
+[gd_scene load_steps=46 format=3 uid="uid://d2xk3u8gf7ddb"]
 
 [ext_resource type="Shader" path="res://Shaders/dangerZone.gdshader" id="1_tfq64"]
 [ext_resource type="Script" path="res://Scripts/Border.gd" id="2_qaj3l"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://j3o5a1m2dh07" path="res://Sprites/Player/player8.png" id="11_wgvds"]
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="12_5a3ym"]
 [ext_resource type="Texture2D" uid="uid://cvbyi72dtay4q" path="res://Sprites/positionIndicator.png" id="13_dokjs"]
+[ext_resource type="AudioStream" uid="uid://eqo8emmkx3ku" path="res://Sounds/move.wav" id="13_saiul"]
 [ext_resource type="Shader" path="res://Shaders/background.gdshader" id="14_4r187"]
 [ext_resource type="Texture2D" uid="uid://dwguhqjp1t0q4" path="res://Sprites/background.png" id="15_yhmlm"]
 [ext_resource type="Shader" path="res://Shaders/border.gdshader" id="16_jk1po"]
@@ -113,7 +114,7 @@ mouse_filter = 2
 script = ExtResource("2_qaj3l")
 distanceToCenter = 5.0
 
-[node name="Player" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("positionIndicator")]
+[node name="Player" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("positionIndicator", "moveSound")]
 z_index = 100
 material = SubResource("ShaderMaterial_tjlym")
 position = Vector2(16.505, -16.065)
@@ -121,6 +122,10 @@ sprite_frames = SubResource("SpriteFrames_4x3ft")
 animation = &"leave"
 script = ExtResource("12_5a3ym")
 positionIndicator = NodePath("../Sprite2D")
+moveSound = NodePath("WalkSound")
+
+[node name="WalkSound" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource("13_saiul")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -5

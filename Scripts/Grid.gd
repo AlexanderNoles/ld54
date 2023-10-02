@@ -8,6 +8,10 @@ extends TextureRect
 const pixelScale = 16
 var playerDead : bool
 
+@export var winSound : AudioStreamPlayer2D
+@export var resetSound : AudioStreamPlayer2D
+@export var devilMoveSound : AudioStreamPlayer2D
+
 func _ready():
 	playerDead = false
 	size = Vector2((gridScale * pixelScale) + 1, (gridScale * pixelScale) - 1)
@@ -42,17 +46,19 @@ func _win_check(grid_position):
 			break
 			
 	for i in devilsEmpty.get_children():
-		var newDevilPos = i.move()
+		var newDevilPos = i.move(devilMoveSound)
 		
 		if grid_position.distance_to(newDevilPos + global_position) < 5:
 			playerDead = true
 			break
 	
 	if playerDead:
+		resetSound.play()
 		await get_tree().create_timer(0.05).timeout
 		GameManager._reset_level()
 		playerDead = false
 	elif grid_position.distance_to(exitDoorway.global_position) < 5 && exitDoorway.open:
+		winSound.play()
 		GameManager._win_level()
 
 func _on_color_rect_on_player_kill():

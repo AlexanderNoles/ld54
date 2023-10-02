@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://bhacwxktbyyme"]
+[gd_scene load_steps=12 format=3 uid="uid://bhacwxktbyyme"]
 
 [ext_resource type="PackedScene" uid="uid://dl0rtlqk74cbt" path="res://Parts/grid.tscn" id="1_2ntk3"]
 [ext_resource type="Texture2D" uid="uid://d1shdjvjn3vfr" path="res://Sprites/newHeart.png" id="3_lqp2q"]
 [ext_resource type="Script" path="res://Scripts/NewHeart.gd" id="4_c5tcr"]
 [ext_resource type="PackedScene" uid="uid://d2xk3u8gf7ddb" path="res://Parts/base_scene.tscn" id="5_mvktq"]
+[ext_resource type="AudioStream" uid="uid://dntxguymwgbf1" path="res://Sounds/gameEnd.wav" id="5_oamgp"]
+[ext_resource type="AudioStream" uid="uid://bcqyn4g3kewoe" path="res://Sounds/heartExplode.wav" id="6_fr6xn"]
 
 [sub_resource type="Curve" id="Curve_70iia"]
 max_value = 200.0
@@ -76,12 +78,21 @@ process_material = SubResource("ParticleProcessMaterial_u35wk")
 one_shot = true
 explosiveness = 1.0
 
-[node name="NewHeart" type="Sprite2D" parent="." node_paths=PackedStringArray("player", "particles")]
+[node name="NewHeart" type="Sprite2D" parent="." node_paths=PackedStringArray("player", "particles", "gameEndSound", "heartExplodeSound")]
 position = Vector2(1, -4)
 texture = ExtResource("3_lqp2q")
 script = ExtResource("4_c5tcr")
 player = NodePath("../BaseScene/Player")
 particles = NodePath("../GPUParticles2D")
+gameEndSound = NodePath("GameEnd")
+heartExplodeSound = NodePath("HeartExplode")
+
+[node name="GameEnd" type="AudioStreamPlayer2D" parent="NewHeart"]
+stream = ExtResource("5_oamgp")
+volume_db = -5.725
+
+[node name="HeartExplode" type="AudioStreamPlayer2D" parent="NewHeart"]
+stream = ExtResource("6_fr6xn")
 
 [connection signal="on_player_kill" from="BaseScene/ColorRect" to="Grid" method="_on_color_rect_on_player_kill"]
 [connection signal="on_state_updated" from="BaseScene/ColorRect" to="Grid" method="_win_check"]

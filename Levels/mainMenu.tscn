@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://7tkj8nyjmrvk"]
+[gd_scene load_steps=9 format=3 uid="uid://7tkj8nyjmrvk"]
 
 [ext_resource type="Script" path="res://Scripts/Camera.gd" id="1_dsp34"]
 [ext_resource type="Shader" path="res://Shaders/wall_part.gdshader" id="2_rhrc7"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://hblcepjgr62b" path="res://Sprites/TITLE.png" id="4_cdkd6"]
 [ext_resource type="Texture2D" uid="uid://djlccv276hy2c" path="res://Sprites/START-TIP.png" id="5_stfrc"]
 [ext_resource type="Script" path="res://Scripts/StartMenu.gd" id="6_n1rqv"]
+[ext_resource type="AudioStream" uid="uid://c63ah1q0k4q2s" path="res://Sounds/gameStart.wav" id="7_0d3hu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ajl60"]
 shader = ExtResource("2_rhrc7")
@@ -33,15 +34,19 @@ texture_filter = 1
 position = Vector2(1, -67)
 texture = ExtResource("4_cdkd6")
 
-[node name="Start-tip" type="Sprite2D" parent="." node_paths=PackedStringArray("confirmEffect")]
+[node name="Start-tip" type="Sprite2D" parent="." node_paths=PackedStringArray("confirmEffect", "startSound")]
 texture_filter = 1
 position = Vector2(0, 41)
 texture = ExtResource("5_stfrc")
 script = ExtResource("6_n1rqv")
 confirmEffect = NodePath("ColorRect")
+startSound = NodePath("AudioStreamPlayer2D")
 
 [node name="ColorRect" type="ColorRect" parent="Start-tip"]
 offset_left = -49.0
 offset_top = -7.0
 offset_right = -49.0
 offset_bottom = 6.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Start-tip"]
+stream = ExtResource("7_0d3hu")
