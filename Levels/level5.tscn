@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dfxpa7bl07a2i"]
+[gd_scene load_steps=4 format=3 uid="uid://dfxpa7bl07a2i"]
 
 [ext_resource type="PackedScene" uid="uid://dl0rtlqk74cbt" path="res://Parts/grid.tscn" id="1_vbvw8"]
-[ext_resource type="Texture2D" uid="uid://bsfslwv8hss51" path="res://Sprites/devil.png" id="2_f3l6a"]
-[ext_resource type="Script" path="res://Scripts/Devil.gd" id="3_jisws"]
+[ext_resource type="PackedScene" uid="uid://tgh5wh232yx5" path="res://Parts/devil.tscn" id="2_a7du5"]
 [ext_resource type="PackedScene" uid="uid://d2xk3u8gf7ddb" path="res://Parts/base_scene.tscn" id="4_45p45"]
 
 [node name="Node2D" type="Node2D"]
@@ -20,16 +19,10 @@ target = NodePath("..")
 position = Vector2(39.985, 40.055)
 child = NodePath("Sprite2D")
 
-[node name="Devil" type="Sprite2D" parent="Grid/Devils" index="0"]
-position = Vector2(24, 22)
-texture = ExtResource("2_f3l6a")
-script = ExtResource("3_jisws")
-positions = [Vector2(40, 22), Vector2(56, 22), Vector2(56, 38), Vector2(56, 54), Vector2(40, 54), Vector2(24, 54), Vector2(8, 54)]
+[node name="Devil" parent="Grid/Devils" index="0" instance=ExtResource("2_a7du5")]
 
-[node name="Devil2" type="Sprite2D" parent="Grid/Devils" index="1"]
+[node name="Devil3" parent="Grid/Devils" index="1" instance=ExtResource("2_a7du5")]
 position = Vector2(24, 38)
-texture = ExtResource("2_f3l6a")
-script = ExtResource("3_jisws")
 positions = [Vector2(24, 22), Vector2(40, 22), Vector2(56, 22), Vector2(56, 38), Vector2(56, 54), Vector2(40, 54), Vector2(24, 54), Vector2(8, 54)]
 
 [node name="BaseScene" parent="." instance=ExtResource("4_45p45")]

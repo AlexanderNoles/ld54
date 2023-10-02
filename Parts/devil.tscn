@@ -1,10 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://tgh5wh232yx5"]
+[gd_scene load_steps=4 format=3 uid="uid://tgh5wh232yx5"]
 
 [ext_resource type="Texture2D" uid="uid://bsfslwv8hss51" path="res://Sprites/devil.png" id="1_dunwe"]
 [ext_resource type="Script" path="res://Scripts/Devil.gd" id="2_qap6n"]
+[ext_resource type="Texture2D" uid="uid://br0veif0w28mg" path="res://Sprites/devilIndicator.png" id="3_nja1v"]
 
-[node name="Devil" type="Sprite2D"]
+[node name="Devil" type="Sprite2D" node_paths=PackedStringArray("nextPosIndicator")]
+z_index = 2
 position = Vector2(24, 22)
 texture = ExtResource("1_dunwe")
 script = ExtResource("2_qap6n")
 positions = [Vector2(40, 22), Vector2(56, 22), Vector2(56, 38), Vector2(56, 54), Vector2(40, 54), Vector2(24, 54), Vector2(8, 54)]
+nextPosIndicator = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("3_nja1v")
